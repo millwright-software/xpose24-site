@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>xpose24 — Now developing</title>
+<meta name="description" content="xpose24 — a slow film camera for iPhone. Expose your best 24. Now developing.">
+<meta property="og:title" content="xpose24 — Now developing">
+<meta property="og:description" content="A slow film camera for iPhone. Expose your best 24.">
+<style>
+  :root {
+    --bg: #101013;
+    --amber: #f59e0b;
+    --silver: #d7d9dd;
+    --dim: #5d616a;
+    --ink: #0a0a0c;
+  }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(120% 90% at 50% 40%, #17171b 0%, var(--bg) 55%, #0a0a0d 100%);
+    color: var(--silver);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 35mm sprocket strips framing the page */
+  .sprockets {
+    flex: none;
+    height: 34px;
+    background-color: var(--ink);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34"><rect x="10" y="11" width="14" height="12" rx="2.5" fill="%2318181d"/><rect x="10.5" y="11.5" width="13" height="11" rx="2" fill="none" stroke="%23000" stroke-opacity=".8"/></svg>');
+    background-repeat: repeat-x;
+    box-shadow: inset 0 -1px 0 rgba(200,155,75,.14);
+  }
+  .sprockets.bottom { box-shadow: inset 0 1px 0 rgba(200,155,75,.14); }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Avenir Next", Avenir, Futura, "Century Gothic", sans-serif;
+    font-size: clamp(44px, 10vw, 64px);
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--silver);
+  }
+
+  .status {
+    margin: 26px 0 0;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-shadow: 0 0 14px rgba(245,158,11,.3);
+  }
+
+  .tagline {
+    margin: 30px 0 0;
+    font-size: clamp(17px, 3.5vw, 21px);
+    font-weight: 400;
+    color: var(--dim);
+  }
+
+  footer {
+    flex: none;
+    text-align: center;
+    padding: 18px 20px 22px;
+  }
+  footer p {
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: .05em;
+    color: var(--dim);
+  }
+</style>
+</head>
+<body>
+<div class="sprockets" aria-hidden="true"></div>
+
+<main>
+  <h1>xpose24</h1>
+  <p class="status">Now developing</p>
+  <p class="tagline">Expose your best 24.</p>
+</main>
+
+<div class="sprockets bottom" aria-hidden="true"></div>
+
+<footer>
+  <p>© 2026 Millwright Software</p>
+</footer>
+</body>
+</html>
