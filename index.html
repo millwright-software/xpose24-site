@@ -1,106 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>xpose24 — Now developing</title>
-<meta name="description" content="xpose24 — a slow film camera for iPhone. Expose your best 24. Now developing.">
-<meta property="og:title" content="xpose24 — Now developing">
-<meta property="og:description" content="A slow film camera for iPhone. Expose your best 24.">
-<style>
-  :root {
-    --bg: #101013;
-    --amber: #f59e0b;
-    --silver: #d7d9dd;
-    --dim: #5d616a;
-    --ink: #0a0a0c;
-  }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: radial-gradient(120% 90% at 50% 40%, #17171b 0%, var(--bg) 55%, #0a0a0d 100%);
-    color: var(--silver);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpose24 - Your Photos. Worth the Wait.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* 35mm sprocket strips framing the page */
-  .sprockets {
-    flex: none;
-    height: 34px;
-    background-color: var(--ink);
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34"><rect x="10" y="11" width="14" height="12" rx="2.5" fill="%2318181d"/><rect x="10.5" y="11.5" width="13" height="11" rx="2" fill="none" stroke="%23000" stroke-opacity=".8"/></svg>');
-    background-repeat: repeat-x;
-    box-shadow: inset 0 -1px 0 rgba(200,155,75,.14);
-  }
-  .sprockets.bottom { box-shadow: inset 0 1px 0 rgba(200,155,75,.14); }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
 
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 48px 24px;
-  }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  h1 {
-    margin: 0;
-    font-family: "Avenir Next", Avenir, Futura, "Century Gothic", sans-serif;
-    font-size: clamp(44px, 10vw, 64px);
-    font-weight: 600;
-    letter-spacing: .04em;
-    color: var(--silver);
-  }
+        a {
+            color: #f59e0b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-  .status {
-    margin: 26px 0 0;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .5em;
-    text-indent: .5em;
-    text-transform: uppercase;
-    color: var(--amber);
-    text-shadow: 0 0 14px rgba(245,158,11,.3);
-  }
+        a:hover {
+            color: #fbbf24;
+        }
 
-  .tagline {
-    margin: 30px 0 0;
-    font-size: clamp(17px, 3.5vw, 21px);
-    font-weight: 400;
-    color: var(--dim);
-  }
+        /* Header & Navigation */
+        header {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
 
-  footer {
-    flex: none;
-    text-align: center;
-    padding: 18px 20px 22px;
-  }
-  footer p {
-    margin: 0;
-    font-size: 12px;
-    letter-spacing: .05em;
-    color: var(--dim);
-  }
-</style>
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #f59e0b;
+        }
+
+        .logo sup {
+            font-size: 0.6em;
+            vertical-align: super;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        nav a:hover {
+            color: #f59e0b;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            margin: 0 auto 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(245, 158, 11, 0.3);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            color: #f59e0b;
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            background: rgba(245, 158, 11, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 1rem;
+            background-color: #161616;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Privacy Callout */
+        .privacy-callout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .privacy-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .privacy-box h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .privacy-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-highlight {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #161616;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 1rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-section a:hover {
+            color: #f59e0b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            nav a {
+                margin-left: 0;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-image-placeholder {
+                width: 100%;
+                max-width: 280px;
+                height: 350px;
+                margin-bottom: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .features {
+                padding: 3rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-box {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="sprockets" aria-hidden="true"></div>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">xpose<sup>24</sup></div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#footer">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-<main>
-  <h1>xpose24</h1>
-  <p class="status">Now developing</p>
-  <p class="tagline">Expose your best 24.</p>
-</main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Placeholder for hero image: camera app mockup or film roll -->
+            <div class="hero-image-placeholder">📷</div>
 
-<div class="sprockets bottom" aria-hidden="true"></div>
+            <h1>Your Photos. Worth the Wait.</h1>
+            <p class="tagline">One roll per week. Finish it to see them.</p>
+            <p class="subtitle">A free roll of film every week. Can't see your photos until you finish the roll. Give one away—and it's really gone. This is photography that feels physical again.</p>
 
-<footer>
-  <p>© 2026 Millwright Software</p>
-</footer>
+            <div class="cta-buttons">
+                <a href="#" class="app-store-badge">Download on App Store</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Why Xpose24</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📬</div>
+                    <h3 class="feature-title">One Roll Per Week</h3>
+                    <p class="feature-description">A free roll arrives every Saturday. Pick your style—color, B&W, Polaroid. Need more? Grab extra rolls for pocket change.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎞️</div>
+                    <h3 class="feature-title">Finish to Develop</h3>
+                    <p class="feature-description">Can't see your photos until you finish the roll. Just like real film. The anticipation is part of the experience.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">Photos are encrypted and stored only on your device. We never see them, never store them, never sell them.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3 class="feature-title">Give It Away</h3>
+                    <p class="feature-description">Hand someone a photo—and you lose it. Like giving away a print. Keep the negative, reprint anytime.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Film Collections</h3>
+                    <p class="feature-description">Authentic film emulation filters. Summer '89, Tokyo Nights, Cinema, and more. Shoot like the classics.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Double Exposure</h3>
+                    <p class="feature-description">Layer two shots into one frame. A classic film technique, now in your pocket.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Callout -->
+    <section class="privacy-callout" id="privacy">
+        <div class="privacy-box">
+            <h2>Your Photos Are Yours Alone</h2>
+            <p><span class="privacy-highlight">No ads. Ever.</span> Zero tracking. Zero analytics. Zero cloud.</p>
+            <p>We built Xpose24 to be the opposite of Instagram, TikTok, and every app competing for your attention.</p>
+            <p style="margin-top: 1rem; font-style: italic;">What you capture is yours. Period.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://instagram.com/xpose24app" title="Instagram">📱</a>
+                        <a href="https://twitter.com/xpose24app" title="Twitter/X">𝕏</a>
+                        <a href="https://tiktok.com/@xpose24app" title="TikTok">♪</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="mailto:support@xpose24.app">Email Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Xpose24. Your photos. Worth the wait.</p>
+                <p>Follow @xpose24app for updates and film drops.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
